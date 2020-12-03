@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Default Event</title>
+</head>
+
+<body>
+    <h3>회원 가입</h3>
+    <form id="sign-up">
+        <label for="user-id">우편주소</label><br>
+        <input type="text" name="userId" id="user-id"><br>
+        <label for="password">상세주소</label><br>
+        <input type="password" name="password" id="password"><br>
+
+        <input type="submit" value="회원가입">
+    </form>
+
+
+    <script>
+        const form = document.querySelector('#sign-up');
+        form.onsubmit = function () {
+            const userId = document.querySelector('#user-id').value;
+            const password = document.querySelector('#password').value;
+
+            if (!userId) {
+                alert('우편번호를 입력해주세요.');
+                return false;
+            } else if (!password) {
+                alert('상세주소를 입력해주세요.');
+                }
+            
+
+
+
+        };
+    </script>
+</body>
+
+</html>
