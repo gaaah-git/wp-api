@@ -252,3 +252,142 @@ if (!userId.trim()) {
       }
     };
     ```
+## css로 팝업창 만들기
+```c
+*****html에서*****
+<div class="popup_btn">
+  <a href="#pop01">팝업</a>
+</div>
+
+<div id="pop01" class="overlay">
+  <div class="popup">
+    <a href="#none" class="close">&times;</a>
+    열려라 팝업!
+  </div>
+</div>
+
+*****css에서*****
+.popup_btn a {
+  display: inline-block;
+  padding: 20px;
+  background: darkred;
+  color: #fff;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 900;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  position: fixed;
+  width: 60%;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+  /* "delay" the visibility transition */
+  -webkit-transition: opacity .5s, visibility 0s linear .5s;
+  transition: opacity .5s, visibility 0s linear .5s;
+  z-index: 1;
+}
+
+.popup:target {
+  visibility: visible;
+  opacity: 1;
+  /* cancel visibility transition delay */
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.popup-close {
+  position: absolute;
+  padding: 10px;
+  max-width: 500px;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, .9);
+}
+
+.popup .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 5px;
+  color: #000;
+  transition: color .3s;
+  font-size: 2em;
+  line-height: .6em;
+  font-weight: bold;
+}
+
+.popup .close:hover {
+  color: #00E5EE;
+}
+```
+
+## 내가 만든 거 (주소를 입력하세요)
+```c
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Default Event</title>
+</head>
+
+<body>
+    <h3>회원 가입</h3>
+    <form id="sign-up">
+        <label for="user-id">우편주소</label><br>
+        <input type="text" name="userId" id="user-id"><br>
+        <label for="password">상세주소</label><br>
+        <input type="password" name="password" id="password"><br>
+
+        <input type="submit" value="회원가입">
+    </form>
+
+
+    <script>
+        const form = document.querySelector('#sign-up');
+        form.onsubmit = function () {
+            const userId = document.querySelector('#user-id').value;
+            const password = document.querySelector('#password').value;
+
+            if (!userId) {
+                alert('우편번호를 입력해주세요.');
+                return false;
+            } else if (!password) {
+                alert('상세주소를 입력해주세요.');
+                }
+            
+
+
+
+        };
+    </script>
+</body>
+
+</html>
+```
+우편번호 안 입력하면 안 입력했다고 뜸
+
+# 그런데 왜 api랑 우편번호 붙어있으면 둘 다 작동을 안 하는가
