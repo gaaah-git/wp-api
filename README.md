@@ -251,7 +251,7 @@ if (!userId.trim()) {
         return false;
       }
     };
-    ```
+ ```
 ## css로 팝업창 만들기
 ```c
 *****html에서*****
