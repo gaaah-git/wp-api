@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주소입력</title>
+    <link rel="stylesheet" href="css/style3.css">
+</head>
+
+<body>
+
+    <div class="flex-box">
+        <div class="flex-item">
+            <h1>주소 검색</h1>
+            <form id="form">
+                <input type="text" name="keyword" id="keyword" placeholder="검색어 입력"><br>
+                <br>
+                <button type="submit" width="300">검색</button>
+            </form>
+            <ul id="address-list"></ul>
+        </div>
+
+
+
+
+
+
+
+        <div class="flex-item">
+            <h3>입력</h3>
+            <form id="sign-up">
+                <label for="user-id">우편번호 입력</label><br>
+                <br>
+                <input type="text" name="userId" id="user-id"><br>
+                <br>
+                <label for="password">상세주소 입력</label><br>
+                <br>
+                <input type="password" name="password" id="password"><br>
+                <br>
+                <br>
+                <input type="submit" value="입력">
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        const API_URL = 'http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do';
+        const API_KEY = 'devU01TX0FVVEgyMDIwMTIwMjE5MzA1OTExMDQ5MzA=';
+        const form = document.querySelector('#form');
+        const addressList = document.querySelector('#address-list');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const keyword = encodeURIComponent(form.keyword.value);
+            search(keyword)
+                .then(res => res.text())
+                .then(txt => JSON.parse(txt.replace(/^\(/, '').replace(/\)$/, '')).results)
+                .then(display)
+                .then(() => form.reset())
+                .catch(console.error);
+        });
+        function search(keyword, currentPage = 1, countPerPage = 10) {
+            const data = {
+                confmKey: API_KEY,
+                keyword,
+                currentPage,
+                countPerPage,
+                resultType: 'json'
+            };
+
+            const body = Object.keys(data).map(key => `${key}=${data[key]}`).join('&');
+
+            const options = {
+                method: 'POST',
+                body,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                }
+            };
+
+            return fetch(API_URL, options);
+        }
+
+        function display(results) {
+            addressList.innerHTML = '';
+            results.juso.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `${item.zipNo}) ${item.roadAddr}`;
+                addressList.appendChild(li);
+            });
+        }
+
+
+
+
+
+
+        const form = document.querySelector('#sign-up');
+        form.onsubmit = function () {
+            const userId = document.querySelector('#user-id').value;
+            const password = document.querySelector('#password').value;
+            const confirmPassword = document.querySelector('#confirm-password').value;
+
+            if (!userId.trim()) {
+                alert('우편번호를 입력해주세요.');
+                return false;
+            }
+            else if(!password) {
+                alert('상세주소를 입력해주세요.');
+                return false;
+            }
+
+        };
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+body {
+    background-image: url('../image/03.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;}
+
+    .harry {
+       
+        padding: 40px 2em;
+        margin: 400px 850px;
+        width: 300px;
+        height: 100px;
+        opacity: 1;
+
+    }
+
+
+
+    .text {
+        font-size: 7rem;
+        text-align: center;
+    }
+
+    .text1 {
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .text2 {
+        font-size: 3.5rem;
+        text-align: center;
+    }
+
+    .menu-box {
+        display:flex;
+        justify-content: space-around;
+        height: 100px;
+
+    }
+
+    .menu-item {
+        background-color: rgb(150, 150, 58);
+        width: 300px;
+        height: 100px;
+        padding: 5px 20px;
+        
+        opacity: 0.8;
+    }

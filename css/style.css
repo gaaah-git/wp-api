@@ -1,0 +1,41 @@
+body {
+    background-color: rgba(253, 233, 168, 0.856);
+    background-image: url('../image/02.jpg');
+    background-repeat: no-repeat;
+    ;
+    }
+    .harry {
+       
+        padding: 40px 2em;
+        margin: 300px 850px;
+        width: 700px;
+        height: 100px;
+        opacity: 1;
+
+    }
+
+
+
+    .text {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+   
+
+    .menu-box {
+        display:flex;
+        justify-content: space-around;
+        height: 100px;
+        
+
+    }
+
+    .menu-item {
+        background-color: rgb(187, 119, 164);
+        width: 500px;
+        height: 100px;
+        padding: 5px 20px;
+        justify-content: space-around;
+        opacity: 0.8;
+    }
